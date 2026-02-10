@@ -2,11 +2,15 @@
 <html>
 <head>
 <title>Birthday Intro</title>
+<head>
+<title>Birthday Intro</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
  margin:0;
- height:100vh;
+ min-height:100vh;
  display:flex;
  justify-content:center;
  align-items:center;
@@ -15,53 +19,35 @@ body{
  color:#fff;
  text-align:center;
  overflow:hidden;
+ padding:20px;
 
- /* birthday background image */
  background:
  linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
  url('https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=80');
-
  background-size:cover;
  background-position:center;
 }
 
-/* glowing bubbles */
-.bg-bubble{
- position:fixed;
- width:220px;
- height:220px;
- background:rgba(255,255,255,0.18);
- border-radius:50%;
- filter:blur(70px);
- animation: float 20s infinite linear;
-}
-
-@keyframes float{
- from{transform:translateY(100vh)}
- to{transform:translateY(-120vh)}
-}
-
-/* TITLE */
+/* TITLE responsive */
 h1{
- font-size:3.8rem;
+ font-size:clamp(1.8rem,5vw,3.8rem);
  text-shadow:0 0 25px #fff;
- animation:fade 2s ease;
 }
 
-/* MESSAGE */
+/* MESSAGE responsive */
 .msg{
- font-size:1.4rem;
+ font-size:clamp(1rem,2.5vw,1.4rem);
  margin-top:15px;
  max-width:650px;
  line-height:1.6;
- padding:0 20px;
+ padding:0 10px;
 }
 
-/* BUTTON */
+/* BUTTON responsive */
 .lovebtn{
- margin-top:40px;
- padding:15px 40px;
- font-size:22px;
+ margin-top:35px;
+ padding:clamp(10px,2vw,15px) clamp(20px,5vw,40px);
+ font-size:clamp(16px,2.5vw,22px);
  border:none;
  border-radius:40px;
  background:#fff;
@@ -71,58 +57,16 @@ h1{
  animation:pulse 1.5s infinite alternate;
 }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:768px){
- h1{
-   font-size:2.2rem;
- }
- .msg{
-   font-size:1.05rem;
- }
- .lovebtn{
-   font-size:18px;
-   padding:12px 28px;
- }
-}
-
 /* animations */
 @keyframes pulse{
  from{transform:scale(1)}
  to{transform:scale(1.08)}
 }
-
-.heart{
- position:fixed;
- top:-10px;
- animation: fall linear forwards;
- font-size:24px;
-}
-
-@keyframes fall{
- to{
-  transform:translateY(110vh);
-  opacity:0;
- }
-}
-
-.sparkle{
- position:fixed;
- color:#fff;
- font-size:18px;
- animation: spark 2s infinite alternate;
-}
-
-@keyframes spark{
- from{opacity:0.5}
- to{opacity:1}
-}
-
-@keyframes fade{
- from{opacity:0; transform:scale(.8)}
- to{opacity:1; transform:scale(1)}
-}
 </style>
 </head>
+
+
+
 
 <body>
 

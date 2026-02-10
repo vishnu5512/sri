@@ -3,10 +3,13 @@
 <head>
 <title>Memories</title>
 
+<!-- REQUIRED for mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
  margin:0;
- height:100vh;
+ min-height:100vh;
  display:flex;
  justify-content:center;
  align-items:center;
@@ -14,85 +17,71 @@ body{
  font-family:cursive;
  color:#fff;
  text-align:center;
- overflow:hidden;
+ overflow-x:hidden;
+ padding:15px;
 
-/* Background birthday image */
  background:
  linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
  url('https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&w=1600&q=80');
-
  background-size:cover;
  background-position:center;
 }
 
-/* title */
-h1{margin-top:20px}
+/* TITLE */
+h1{
+ margin-top:10px;
+ font-size:clamp(1.5rem,5vw,2.5rem);
+}
 
-/* image */
+/* IMAGE */
 img{
- width:500px;
- height:350px;
- border-radius:25px;
- box-shadow:0 0 35px #fff;
+ width:100%;
+ max-width:520px;
+ aspect-ratio: 4 / 3;
+ object-fit:cover;
+ border-radius:22px;
+ box-shadow:0 0 30px #fff;
  animation:zoom 6s infinite alternate;
 }
 
 @keyframes zoom{
  from{transform:scale(1)}
- to{transform:scale(1.06)}
+ to{transform:scale(1.05)}
 }
 
-/* MOBILE VIEW */
-@media(max-width:768px){
- img{
-   width:90%;
-   height:auto;
- }
- h1{
-   font-size:22px;
- }
- #msg{
-   font-size:18px;
-   padding:0 15px;
- }
- button{
-   font-size:17px;
-   padding:12px 25px;
- }
-}
-
-/* floating hearts */
-.heart{
- position:absolute;
- color:#fff;
- font-size:22px;
- animation:float 8s linear infinite;
-}
-
-@keyframes float{
- 0%{transform:translateY(100vh); opacity:0}
- 30%{opacity:1}
- 100%{transform:translateY(-10vh); opacity:0}
-}
-
-/* message */
+/* MESSAGE */
 #msg{
- margin-top:15px;
- font-size:24px;
- color:#fff;
+ margin-top:14px;
+ font-size:clamp(1rem,3.5vw,1.4rem);
+ padding:0 10px;
  text-shadow:0 0 10px #fff;
 }
 
+/* BUTTON */
 button{
- margin-top:25px;
- padding:15px 40px;
- font-size:20px;
+ margin-top:22px;
+ padding:clamp(10px,3vw,15px) clamp(20px,6vw,40px);
+ font-size:clamp(16px,4vw,20px);
  border-radius:40px;
  border:none;
  background:#fff;
  color:#ff3385;
  cursor:pointer;
  font-weight:bold;
+}
+
+/* FLOATING HEARTS */
+.heart{
+ position:fixed;
+ bottom:-20px;
+ color:#fff;
+ animation:float 8s linear forwards;
+}
+
+@keyframes float{
+ from{transform:translateY(0); opacity:0}
+ 30%{opacity:1}
+ to{transform:translateY(-110vh); opacity:0}
 }
 </style>
 </head>
@@ -101,28 +90,33 @@ button{
 
 <h1>Beautiful Memories With You 💕</h1>
 
-<img id="slide" src="POSI1.jpeg">
+<img id="slide" src="POSI1.jpeg" alt="Memory Image">
 
 <div id="msg">You are my happiest memory 💖</div>
 
 <a href="final.html">
-<button>click me ➜</button>
+<button>Click Me ➜</button>
 </a>
 
 <script>
-let imgs=["POSI1.jpeg","POSI2.jpeg","POSI3.jpeg","POSI4.jpeg","POSI5.jpeg","POSI6.jpeg","POSI7.jpeg"];
+/* IMAGES */
+let imgs=[
+ "POSI1.jpeg","POSI2.jpeg","POSI3.jpeg",
+ "POSI4.jpeg","POSI5.jpeg","POSI6.jpeg","POSI7.jpeg"
+];
 let i=0;
 setInterval(()=>{
  i=(i+1)%imgs.length;
  document.getElementById("slide").src=imgs[i];
 },3000);
 
+/* MESSAGES */
 let messages=[
-"You are my happiest memory 💖",
-"Every photo with you is special ✨",
-"My world smiles because of you 😊",
-"Forever moments together ❤️",
-"You are my beautiful story 💕"
+ "You are my happiest memory 💖",
+ "Every photo with you is special ✨",
+ "My world smiles because of you 😊",
+ "Forever moments together ❤️",
+ "You are my beautiful story 💕"
 ];
 let m=0;
 setInterval(()=>{
@@ -130,15 +124,16 @@ setInterval(()=>{
  document.getElementById("msg").innerText=messages[m];
 },3000);
 
+/* HEARTS */
 setInterval(()=>{
  let heart=document.createElement("div");
  heart.className="heart";
  heart.innerHTML="❤";
  heart.style.left=Math.random()*100+"vw";
- heart.style.fontSize=(20+Math.random()*30)+"px";
+ heart.style.fontSize=(18+Math.random()*22)+"px";
  document.body.appendChild(heart);
  setTimeout(()=>heart.remove(),8000);
-},500);
+},600);
 </script>
 
 </body>

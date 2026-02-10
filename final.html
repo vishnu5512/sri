@@ -7,45 +7,49 @@
 <style>
 body{
  margin:0;
- height:100vh;
+ min-height:100vh;
  display:flex;
  justify-content:center;
  align-items:center;
  font-family:cursive;
  color:#fff;
  text-align:center;
- overflow:hidden;
+ overflow-x:hidden;
  background-size:cover;
  background-position:center;
  transition:background-image 1.2s ease-in-out;
+ padding:15px;
 }
 
 /* overlay */
 .overlay{
  background:rgba(0,0,0,0.45);
- padding:60px;
+ padding:clamp(25px,5vw,60px);
  border-radius:30px;
  box-shadow:0 0 40px rgba(255,255,255,.6);
  animation:fade 2.5s ease;
+ width:100%;
+ max-width:600px;
 }
 
+/* heading responsive */
 h1{
- font-size:4rem;
+ font-size:clamp(1.8rem,6vw,4rem);
  text-shadow:0 0 25px #fff,0 0 50px #ff4da6;
+ margin-bottom:10px;
 }
 
-@media(max-width:768px){
- .overlay{padding:35px 20px;margin:15px}
- h1{font-size:2.2rem}
- h2{font-size:1.2rem}
+h2{
+ font-size:clamp(1rem,4vw,1.5rem);
 }
 
+/* falling hearts */
 .heart{
  position:fixed;
  top:-20px;
  color:#fff;
  animation:fall linear forwards;
- font-size:24px;
+ font-size:22px;
 }
 
 @keyframes fall{
@@ -61,11 +65,12 @@ h1{
 
 <body>
 
-<audio autoplay loop>
+<!-- mobile autoplay requires muted first -->
+<audio id="music" loop autoplay muted>
  <source src="birthday_music.wav">
 </audio>
 
-<audio autoplay>
+<audio id="voice" autoplay muted>
  <source src="happy_birthday_posi_male_voice.wav">
 </audio>
 
@@ -75,6 +80,12 @@ h1{
 </div>
 
 <script>
+
+/* enable sound after first touch (mobile fix) */
+document.body.addEventListener("click",()=>{
+ document.getElementById("music").muted=false;
+ document.getElementById("voice").muted=false;
+});
 
 /* BACKGROUND IMAGE SLIDESHOW */
 let backgrounds=[
