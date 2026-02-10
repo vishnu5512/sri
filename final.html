@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>I Love You</title>
+<style>
+body{
+ margin:0;
+ height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:url('posi1.jpg') center/cover no-repeat;
+ font-family:cursive;
+ color:#fff;
+ text-align:center;
+}
+
+.overlay{
+ background:rgba(0,0,0,0.5);
+ padding:60px;
+ border-radius:30px;
+ animation:fade 3s ease;
+}
+
+h1{
+ font-size:4rem;
+ text-shadow:0 0 25px #fff;
+}
+
+@keyframes fade{
+ from{opacity:0;transform:scale(.8)}
+ to{opacity:1;transform:scale(1)}
+}
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+ <source src="birthday_music.wav">
+</audio>
+
+<audio autoplay>
+ <source src="happy_birthday_posi_male_voice.wav">
+</audio>
+
+<div class="overlay">
+<h1>❤️ I LOVE YOU POSI ❤️</h1>
+<h2>Forever Yours 💖</h2>
+</div>
+
+</body>
+</html>

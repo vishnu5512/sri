@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Intro</title>
+
+<style>
+body{
+ margin:0;
+ height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ font-family:'Segoe UI',cursive;
+ color:#fff;
+ text-align:center;
+ overflow:hidden;
+ background:
+ radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 40%),
+ radial-gradient(circle at 80% 70%, rgba(255,255,255,0.20), transparent 40%),
+ linear-gradient(-45deg,#ff2d75,#ff7ab6,#ff4da6,#ff9ecf);
+ background-size:400% 400%;
+ animation: gradientMove 12s ease infinite;
+}
+
+
+/* moving gradient */
+@keyframes gradientMove{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+/* glowing bubbles */
+.bg-bubble{
+ position:fixed;
+ width:220px;
+ height:220px;
+ background:rgba(255,255,255,0.18);
+ border-radius:50%;
+ filter:blur(70px);
+ animation: float 20s infinite linear;
+}
+
+@keyframes float{
+ from{transform:translateY(100vh)}
+ to{transform:translateY(-120vh)}
+}
+
+/* TITLE */
+h1{
+ font-size:3.8rem;
+ text-shadow:0 0 25px #fff;
+ animation:fade 2s ease;
+}
+
+/* MESSAGE */
+.msg{
+ font-size:1.4rem;
+ margin-top:15px;
+ max-width:650px;
+ line-height:1.6;
+}
+
+/* BUTTON */
+.lovebtn{
+ margin-top:40px;
+ padding:15px 40px;
+ font-size:22px;
+ border:none;
+ border-radius:40px;
+ background:#fff;
+ color:#ff4da6;
+ cursor:pointer;
+ box-shadow:0 0 20px #fff, 0 0 40px #ff4da6;
+ animation:pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse{
+ from{transform:scale(1)}
+ to{transform:scale(1.08)}
+}
+
+/* FALLING HEARTS */
+.heart{
+ position:fixed;
+ top:-10px;
+ animation: fall linear forwards;
+ font-size:24px;
+}
+
+@keyframes fall{
+ to{
+  transform:translateY(110vh);
+  opacity:0;
+ }
+}
+
+/* SPARKLES */
+.sparkle{
+ position:fixed;
+ color:#fff;
+ font-size:18px;
+ animation: spark 2s infinite alternate;
+}
+
+@keyframes spark{
+ from{opacity:0.5}
+ to{opacity:1}
+}
+
+@keyframes fade{
+ from{opacity:0; transform:scale(.8)}
+ to{opacity:1; transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday Posi 💖</h1>
+
+<div class="msg">
+To my lovely wife Posi,<br>
+You are the most beautiful part of my life.<br>
+Every heartbeat of mine whispers your name.<br>
+I love you forever ❤️
+</div>
+
+<a href="memories.html">
+<button class="lovebtn">Click Me 💖</button>
+</a>
+
+<script>
+
+/* background bubbles */
+for(let i=0;i<6;i++){
+ const b=document.createElement("div");
+ b.className="bg-bubble";
+ b.style.left=Math.random()*100+"%";
+ b.style.animationDuration=(15+Math.random()*10)+"s";
+ document.body.appendChild(b);
+}
+
+/* HEART FALL EFFECT */
+setInterval(()=>{
+ const heart=document.createElement("div");
+ heart.className="heart";
+ heart.innerHTML="💖";
+ heart.style.left=Math.random()*100+"%";
+ heart.style.animationDuration=(3+Math.random()*3)+"s";
+ document.body.appendChild(heart);
+ setTimeout(()=>heart.remove(),6000);
+},400);
+
+/* SPARKLES */
+for(let i=0;i<20;i++){
+ const s=document.createElement("div");
+ s.className="sparkle";
+ s.innerHTML="✨";
+ s.style.left=Math.random()*100+"%";
+ s.style.top=Math.random()*100+"%";
+ document.body.appendChild(s);
+}
+</script>
+
+</body>
+</html>
