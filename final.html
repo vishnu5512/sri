@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>I Love You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories</title>
+
 <style>
 body{
  margin:0;
@@ -9,44 +11,140 @@ body{
  display:flex;
  justify-content:center;
  align-items:center;
- background:url('posi1.jpg') center/cover no-repeat;
+ flex-direction:column;
  font-family:cursive;
  color:#fff;
  text-align:center;
+ overflow:hidden;
+ background-size:cover;
+ background-position:center;
+ transition:background-image 1s ease-in-out;
 }
 
-.overlay{
- background:rgba(0,0,0,0.5);
- padding:60px;
- border-radius:30px;
- animation:fade 3s ease;
+/* title */
+h1{margin-top:20px}
+
+/* image */
+img{
+ width:500px;
+ height:350px;
+ border-radius:25px;
+ box-shadow:0 0 35px #fff;
+ animation:zoom 6s infinite alternate;
 }
 
-h1{
- font-size:4rem;
- text-shadow:0 0 25px #fff;
+@keyframes zoom{
+ from{transform:scale(1)}
+ to{transform:scale(1.06)}
 }
 
-@keyframes fade{
- from{opacity:0;transform:scale(.8)}
- to{opacity:1;transform:scale(1)}
+/* MOBILE */
+@media(max-width:768px){
+ img{
+   width:92%;
+   height:auto;
+ }
+ h1{font-size:22px}
+ #msg{font-size:18px;padding:0 15px}
+ button{font-size:17px;padding:12px 25px}
+}
+
+/* hearts */
+.heart{
+ position:absolute;
+ color:#fff;
+ font-size:22px;
+ animation:float 8s linear infinite;
+}
+@keyframes float{
+ 0%{transform:translateY(100vh);opacity:0}
+ 30%{opacity:1}
+ 100%{transform:translateY(-10vh);opacity:0}
+}
+
+#msg{
+ margin-top:15px;
+ font-size:24px;
+ text-shadow:0 0 10px #fff;
+}
+
+button{
+ margin-top:25px;
+ padding:15px 40px;
+ font-size:20px;
+ border-radius:40px;
+ border:none;
+ background:#fff;
+ color:#ff3385;
+ cursor:pointer;
+ font-weight:bold;
 }
 </style>
 </head>
+
 <body>
 
-<audio autoplay loop>
- <source src="birthday_music.wav">
-</audio>
+<h1>Beautiful Memories With You 💕</h1>
 
-<audio autoplay>
- <source src="happy_birthday_posi_male_voice.wav">
-</audio>
+<img id="slide" src="POSI1.jpeg">
 
-<div class="overlay">
-<h1>❤️ I LOVE YOU POSI ❤️</h1>
-<h2>Forever Yours 💖</h2>
-</div>
+<div id="msg">You are my happiest memory 💖</div>
+
+<a href="final.html">
+<button>click me ➜</button>
+</a>
+
+<script>
+
+/* BACKGROUND IMAGE SLIDESHOW */
+let bgimgs=[
+ "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&w=1600&q=80",
+ "https://images.unsplash.com/photo-1504198458649-3128b932f49b?auto=format&fit=crop&w=1600&q=80",
+ "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=80"
+];
+let b=0;
+function changeBG(){
+ document.body.style.backgroundImage =
+ "linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),url('"+bgimgs[b]+"')";
+ b=(b+1)%bgimgs.length;
+}
+changeBG();
+setInterval(changeBG,5000);
+
+/* slideshow images */
+let imgs=["POSI1.jpeg","POSI2.jpeg","POSI3.jpeg","POSI4.jpeg","POSI5.jpeg","POSI6.jpeg","POSI7.jpeg"];
+let i=0;
+setInterval(()=>{
+ i=(i+1)%imgs.length;
+ document.getElementById("slide").src=imgs[i];
+},3000);
+
+/* messages */
+let messages=[
+"You are my happiest memory 💖",
+"Every photo with you is special ✨",
+"My world smiles because of you 😊",
+"Forever moments together ❤️",
+"You are my beautiful story 💕"
+];
+let m=0;
+setInterval(()=>{
+ m=(m+1)%messages.length;
+ document.getElementById("msg").innerText=messages[m];
+},3000);
+
+/* hearts */
+setInterval(()=>{
+ let heart=document.createElement("div");
+ heart.className="heart";
+ heart.innerHTML="❤";
+ heart.style.left=Math.random()*100+"vw";
+ heart.style.fontSize=(20+Math.random()*30)+"px";
+ document.body.appendChild(heart);
+ setTimeout(()=>heart.remove(),8000);
+},500);
+
+</script>
 
 </body>
 </html>

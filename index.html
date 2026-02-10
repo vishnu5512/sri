@@ -15,20 +15,14 @@ body{
  color:#fff;
  text-align:center;
  overflow:hidden;
+
+ /* birthday background image */
  background:
- radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 40%),
- radial-gradient(circle at 80% 70%, rgba(255,255,255,0.20), transparent 40%),
- linear-gradient(-45deg,#ff2d75,#ff7ab6,#ff4da6,#ff9ecf);
- background-size:400% 400%;
- animation: gradientMove 12s ease infinite;
-}
+ linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+ url('https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=80');
 
-
-/* moving gradient */
-@keyframes gradientMove{
- 0%{background-position:0% 50%}
- 50%{background-position:100% 50%}
- 100%{background-position:0% 50%}
+ background-size:cover;
+ background-position:center;
 }
 
 /* glowing bubbles */
@@ -60,6 +54,7 @@ h1{
  margin-top:15px;
  max-width:650px;
  line-height:1.6;
+ padding:0 20px;
 }
 
 /* BUTTON */
@@ -76,12 +71,26 @@ h1{
  animation:pulse 1.5s infinite alternate;
 }
 
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+ h1{
+   font-size:2.2rem;
+ }
+ .msg{
+   font-size:1.05rem;
+ }
+ .lovebtn{
+   font-size:18px;
+   padding:12px 28px;
+ }
+}
+
+/* animations */
 @keyframes pulse{
  from{transform:scale(1)}
  to{transform:scale(1.08)}
 }
 
-/* FALLING HEARTS */
 .heart{
  position:fixed;
  top:-10px;
@@ -96,7 +105,6 @@ h1{
  }
 }
 
-/* SPARKLES */
 .sparkle{
  position:fixed;
  color:#fff;
@@ -132,8 +140,6 @@ I love you forever ❤️
 </a>
 
 <script>
-
-/* background bubbles */
 for(let i=0;i<6;i++){
  const b=document.createElement("div");
  b.className="bg-bubble";
@@ -142,7 +148,6 @@ for(let i=0;i<6;i++){
  document.body.appendChild(b);
 }
 
-/* HEART FALL EFFECT */
 setInterval(()=>{
  const heart=document.createElement("div");
  heart.className="heart";
@@ -153,7 +158,6 @@ setInterval(()=>{
  setTimeout(()=>heart.remove(),6000);
 },400);
 
-/* SPARKLES */
 for(let i=0;i<20;i++){
  const s=document.createElement("div");
  s.className="sparkle";
